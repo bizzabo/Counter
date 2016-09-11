@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {decrementActionChanged, incrementActionChanged} from '../actions/actions'
+import {decrementActionChanged} from '../actions/actions'
 
 const mapStateToProps = (state) => {
     const {counterReducer} = state;
@@ -10,8 +10,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        decrementActionChanged,
-        incrementActionChanged
+        decrementActionChanged
     }, dispatch);
 };
 
@@ -24,7 +23,7 @@ class Counter extends Component {
     }
 
     incrementAsync() {
-        setTimeout(this.props.incrementActionChanged, 1000)
+        //setTimeout(this.props.incrementActionChanged, 1000)
     }
 
     decrementAsync() {
@@ -32,7 +31,7 @@ class Counter extends Component {
     }
 
     incrementClicked() {
-        this.props.incrementActionChanged();
+        //todo - call an action
     }
 
     decrementClicked() {
@@ -51,9 +50,9 @@ class Counter extends Component {
                     {' '}
                     <button onClick={this.decrementClicked.bind(this)}>-</button>
                     {' '}
-                    <button onClick={this.incrementAsync}>Increment Timeout</button>
+                    <button onClick={this.incrementAsync.bind(this)}>Increment Timeout</button>
                     {' '}
-                    <button onClick={this.decrementAsync}>Decrement Timeout</button>
+                    <button onClick={this.decrementAsync.bind(this)}>Decrement Timeout</button>
                 </p>
             </div>
         )
