@@ -4,6 +4,9 @@ import rootReducer from '../reducers/reducers'
 
 export default function(initialState) {
     return createStore(rootReducer, initialState, compose(
-        applyMiddleware(thunkMiddleware)
+        applyMiddleware(
+            thunkMiddleware
+        ),
+        window.devToolsExtension ? window.devToolsExtension() : f => f
     ));
 }
